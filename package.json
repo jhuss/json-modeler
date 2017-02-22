@@ -1,0 +1,34 @@
+{
+  "name": "json-modeler",
+  "version": "0.0.1",
+  "description": "map json properties to class model",
+  "main": "JsonModeler.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build-test": "npm run build && tsc --project ./test/",
+    "pretest": "npm run build-test",
+    "test": "node ./test-compiled/test/base.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhuss/json-modeler.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "json",
+    "models"
+  ],
+  "author": "Jesus Jerez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jhuss/json-modeler/issues"
+  },
+  "homepage": "https://github.com/jhuss/json-modeler",
+  "devDependencies": {
+    "typescript": "^2.1.4"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.9"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "outDir": "../test-compiled/"
+  },
+  "files": [
+    "../JsonModeler.ts",
+    "base.ts",
+    "../index.d.ts"
+  ]
+}
