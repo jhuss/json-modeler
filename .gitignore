@@ -1,3 +1,6 @@
 ### JetBrains
 .idea/
 *.iws
+
+### Node
+node_modules/

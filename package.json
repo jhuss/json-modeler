@@ -26,9 +26,9 @@
   },
   "homepage": "https://github.com/jhuss/json-modeler",
   "devDependencies": {
-    "typescript": "^2.1.4"
+    "typescript": "^2.2.1"
   },
   "dependencies": {
-    "reflect-metadata": "^0.1.9"
+    "reflect-metadata": "^0.1.10"
   }
 }

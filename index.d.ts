@@ -6,10 +6,10 @@
 
 export { };
 
-import {JsonModeler as _JsonModeler} from './JsonModeler';
+import {IFieldMetadata} from './JsonModeler';
 
 declare global {
     namespace JsonModeler {
-        function JsonField<T>(metadata?: _JsonModeler.IFieldMetadata<T> | string): any;
+        function JsonField<T>(metadata?: IFieldMetadata<T> | string): any;
     }
 }

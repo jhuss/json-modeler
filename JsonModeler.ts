@@ -6,37 +6,56 @@
 
 import 'reflect-metadata';
 
+const DecoratorKey = 'JsonField';
+
+export interface IFieldMetadata<T> {
+    name?: string,
+    dataType?: {new(): T}
+}
+
+export interface IApplyOptions<T> {
+    model: {new(): T},
+    data: any
+}
+
 export namespace JsonModeler {
     "use strict";
-
-    const DecoratorKey = 'JsonField';
-
-    export interface IFieldMetadata<T> {
-        name?: string,
-        classModel?: {new(): T}
-    }
 
     function isFieldMetadata<T>(metadata: IFieldMetadata<T> | string): metadata is IFieldMetadata<T> {
         return (<IFieldMetadata<T>>metadata).name !== undefined;
     }
 
+    export function extractMeta(target: any, property: string) {
+        return Reflect.getMetadata(DecoratorKey, target, property);
+    }
+
     export function JsonField<T>(metadata?: IFieldMetadata<T> | string): any {
+        let metadataR;
+
         if (metadata !== undefined && isFieldMetadata(metadata)) {
             let metadataObj = <IFieldMetadata<T>>metadata;
 
-            return Reflect.metadata(DecoratorKey, {
+            metadataR = Reflect.metadata(DecoratorKey, {
                 name: metadataObj ? metadataObj.name : undefined,
-                classModel: metadataObj ? metadataObj.classModel : undefined
+                dataType: metadataObj ? metadataObj.dataType : undefined
             });
         } else {
-            return Reflect.metadata(DecoratorKey, {
+            metadataR = Reflect.metadata(DecoratorKey, {
                 name: metadata,
-                classModel: undefined
+                dataType: undefined
             });
         }
+
+        return metadataR;
     }
 
-    export function getFieldMeta(target: any, property: string) {
-        return Reflect.getMetadata(DecoratorKey, target, property);
+    export function applyModel<T>(options: IApplyOptions<T>): any {
+        if (options !== undefined) {
+            let modelInstance;
+            modelInstance = new options.model();
+            return modelInstance;
+        }
+
+        throw new Error('"applyModel" options can not be empty');
     }
 }
